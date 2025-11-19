@@ -1,12 +1,18 @@
+from quantfin.curves.interpolation import LogLinearInterpolator
+
+
 class IBORCurve3M:
     def __init__(self, ois_curve):
-        pass
+        self.times = [0]
+        self.dfs = [1]
 
     def add_knot(self, t, df):
-        pass
+        self.times.append(t)
+        self.dfs.append(df)
 
     def df(self, t):
-        pass
+        interpolator = LogLinearInterpolator(self.times, self.dfs)
+        return interpolator(t)
 
     def forward_rate(self, t1, t2):
-        pass
+        return (self.df(t1) / self.df(t2) - 1) / 0.25

@@ -1,14 +1,19 @@
+import math
+
+from quantfin.curves.interpolation import LogLinearInterpolator
+
 class OISCurve:
     def __init__(self):
         self.times = [0]
-        self.df = [1]
+        self.dfs = [1]
 
     def add_knot(self, t, df):
         self.times.append(t)
-        self.df.append(df)
+        self.dfs.append(df)
 
     def df(self, t):
-        pass
+        interpolator = LogLinearInterpolator(self.times, self.dfs)
+        return interpolator(t)
 
     def zero_rate(self, t):
-        pass
+        return -1 * math.log(self.df(t)) / t

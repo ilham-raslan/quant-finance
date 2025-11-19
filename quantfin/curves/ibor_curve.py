@@ -1,4 +1,4 @@
-from quantfin.curves.interpolation import LogLinearInterpolator
+from quantfin.bootstrap.interpolation import LogLinearInterpolator
 
 
 class IBORCurve3M:

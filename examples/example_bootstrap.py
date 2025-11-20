@@ -62,3 +62,13 @@ print("1.5y ois zero rate: " + str(zero))
 
 fwd = ibor3m_curve.forward_rate(1.0, 1.25)
 print("1.0 to 1.25 forward rate: " + str(fwd))
+
+# price an example OIS Swap
+ois_swap = OISSwap(3, 0.0021, 100)
+ois_swap_price = ois_swap.price(ois_curve)
+print("3y ois swap with notional 100 and fixed rate 0.0021 is priced at " + str(ois_swap_price))
+
+# price an example 3m Ibor Swap
+ibor3m_swap = Swap3M(3, 0.003, 100)
+ibor3m_swap_price = ibor3m_swap.price(ois_curve, ibor3m_curve)
+print("3y ibor 3m swap with notional 100 and fixed rate 0.003 is priced at " + str(ibor3m_swap_price))

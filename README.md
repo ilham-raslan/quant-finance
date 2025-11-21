@@ -1,13 +1,27 @@
 # QuantFin
 
-QuantFin is a lightweight Python library for **interest-rate curve construction**, **instrument pricing**, and (eventually) **volatility model calibration**.  
-It is designed as an educational and extensible framework implementing modern multi-curve concepts including:
+> ⚠️ **Disclaimer:** QuantFin is an educational project. It is **not intended for production use** or for making real financial decisions. Use at your own risk. This library is designed for learning, experimentation, and research purposes only.
 
-- OIS discounting
-- IBOR forecasting curve
-- Swap pricing
-- Discount factor interpolation
+QuantFin is a lightweight Python library for working with interest-rate derivatives and curves.  
+It provides tools for building discount and forecasting curves, pricing standard interest-rate instruments, and exploring volatility modeling.  
+The library is designed to be **educational, modular, and extensible**, making it easy to experiment with multi-curve frameworks and volatility calibration techniques.
+
+
+---
+
+## Features
+
+### Curve Construction & Instrument Pricing
+- OIS discounting curve construction
+- IBOR forecasting curve (currently 3M)
 - Sequential curve bootstrapping
+- Discount factor interpolation
+- Swap pricing: OIS swaps and 3M swaps
+
+### Volatility & Calibration
+- Generic volatility surface and calibrator
+- SABR-style parameter fitting to market vols
+- Product-specific calibration (caplets, swaptions) planned for future releases
 
 ---
 
@@ -18,7 +32,7 @@ It is designed as an educational and extensible framework implementing modern mu
 pip install -r requirements.txt
 ```
 
-### Example: Bootstrapping Curves
+### Example: Bootstrapping Swap Curves
 See:  
 `examples/example_bootstrap.py`
 
@@ -40,9 +54,9 @@ print(ois_curve.df(1.0))
 print(ibor_curve.forward_rate(1.0, 1.25))
 ```
 
-### Example: Pricing Instruments  
+### Example: Pricing Swaps  
 See:  
-`examples/pricing_examples.py`
+`examples/example_bootstrap.py`
 
 ```python
 ois_swap = OISSwap(3.0, 0.0023, 100)
@@ -50,6 +64,39 @@ price = ois_swap.price(ois_curve)
 
 swap3m = Swap3M(3.0, 0.005, 100)
 price = swap3m.price(ois_curve, ibor_curve)
+```
+
+### Example: Volatility Calibration
+See:  
+`examples/example_vol_calibration.py`
+
+```python
+from quantfin.vol.vol_surface import VolSurface
+
+# Market data for testing
+market_options = [
+    { "expiry": 1.0, "strike": 100, "market_vol": 0.20, "forward": 100 },
+    { "expiry": 1.0, "strike": 105, "market_vol": 0.22, "forward": 100 },
+    { "expiry": 2.0, "strike": 100, "market_vol": 0.21, "forward": 100 },
+    { "expiry": 2.0, "strike": 105, "market_vol": 0.23, "forward": 100 },
+]
+
+# Separate lists for the surface
+expiry_list = [opt["expiry"] for opt in market_options]
+strike_list = [opt["strike"] for opt in market_options]
+market_vol_list = [opt["market_vol"] for opt in market_options]
+forward_list = [opt["forward"] for opt in market_options]
+
+# Create a VolSurface object
+vol_surface = VolSurface(expiry_list, strike_list, market_vol_list, forward_list)
+
+# Calibrate the model to the market vols
+vol_surface.calibrate()
+
+# Query the calibrated surface for implied vols
+print("Implied vol for T=1.5, K=102, F=100:", vol_surface.get_vol(1.5, 102, 100))
+print("Implied vol for T=1, K=100, F=100:", vol_surface.get_vol(1, 100, 100))
+print("Implied vol for T=2, K=105, F=100:", vol_surface.get_vol(2, 105, 100))
 ```
 
 ---
@@ -60,27 +107,22 @@ Below is the recommended roadmap, broken down by module category.
 
 ---
 
-## **1. Bootstrapping Improvements**
+## **1. Bootstrapping Swap Curves**
 - Add interpolation for missing tenors / broken-tenor instruments during bootstrapping
 - Support for more IBOR tenors, including 1m and 6m, bootstrapped using basis swaps
-
----
-
-## **2. Interpolation & Curve Methods**
 - Add some sort of spline interpolation method
 
 ---
 
-## **3. Volatility & Calibration**
-- SABR calibration for:
-  - Equity Options
+## **2. Volatility Calibration**
+- Tests for volatility library
+- Product-specific SABR calibration for:
+  - Caplets
   - Swaptions
 
 ---
 
 # Referenced Literature
-
-Reference for mathematics
 
 ---
 
@@ -93,5 +135,6 @@ Reference for mathematics
 
 ## **2. Vol Surface Calibration**
 - Managing Smile Risk by Hagan
+- Equivalent Black Volatilies by Hagan
 
 ---

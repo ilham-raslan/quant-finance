@@ -194,7 +194,7 @@ print("Caplet price:", price)
 
 ### 6. Performance & Vectorisation
 - Profile calibration and bootstrapping routines
-- Optimize using vectorised operations or JIT compilation
+- Optimise using vectorised operations or JIT compilation
 
 ### 7. Documentation & Readability
 - Add detailed docstrings to all core classes/functions
@@ -205,7 +205,7 @@ print("Caplet price:", price)
 
 ### 9. Risk Scenarios
 - Implement scenario analysis: shock interest rates, re-bootstrap, shock volatilities
-- Visualize and quantify PnL/risk impact
+- Visualise and quantify PnL/risk impact
 
 ---
 

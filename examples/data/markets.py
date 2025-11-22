@@ -1,3 +1,4 @@
+from quantfin.instruments.caplet_3m import Caplet3M
 from quantfin.instruments.ois_swap import OISSwap
 from quantfin.instruments.swap_3m import Swap3M
 
@@ -47,9 +48,9 @@ SWAPS_3M = [
     Swap3M(5.00, 0.0075)
 ]
 
-SABR_DATA = [
-    { "expiry": 1.0, "strike": 100, "market_vol": 0.2, "forward": 99 },
-    { "expiry": 1.0, "strike": 105, "market_vol": 0.22, "forward": 99  },
-    { "expiry": 2.0, "strike": 100, "market_vol": 0.21, "forward": 98  },
-    { "expiry": 2.0, "strike": 105, "market_vol": 0.23, "forward": 98  }
+CAPLETS_3M = [
+    Caplet3M(1, 0.04,1,0.2),
+    Caplet3M(1, 0.045, 1,0.22),
+    Caplet3M(2, 0.03, 1,0.21),
+    Caplet3M(2, 0.035,1, 0.23)
 ]

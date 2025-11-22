@@ -3,11 +3,6 @@ from quantfin.vol.vol_calibrator import VolCalibrator
 
 class VolSurface:
     """Represents a volatility surface: vol = f(strike, expiry)"""
-    expiries = []
-    strikes = []
-    vols = []
-    forwards = []
-    model = None
 
     def __init__(self, expiries=None, strikes=None, vols=None, forwards=None):
         self.expiries = expiries if expiries is not None else []

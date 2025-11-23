@@ -5,7 +5,7 @@ from quantfin.instruments.ois_swap import OISSwap
 from quantfin.instruments.swap_3m import Swap3M
 
 
-def test_bootstraper_rates():
+def test_bootstrapper_rates():
     ois_swaps = [
         OISSwap(0.25, 0.00010)
     ]

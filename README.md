@@ -167,7 +167,7 @@ print("Caplet price:", price)
 # Future Work
 
 ### 1. Bootstrapping Swap Curves
-- Interpolation for missing tenors and broken-tenor instruments
+- Currently bootstraps OIS from quarterly paying OIS swaps at all tenors which is unrealistic, this should use more realistic OIS instruments
 - Support additional IBOR tenors (1m, 6m) via basis swaps
 - Implement multiple interpolation techniques (linear, spline, monotone)
 

@@ -1,7 +1,7 @@
+import numpy as np
 from scipy.optimize import least_squares
 
 from quantfin.vol.vol_model import VolModel
-import numpy as np
 
 
 class VolCalibrator:

@@ -1,6 +1,8 @@
-from quantfin.vol.caplet3m_vol_calibrator import Caplet3MVolCalibrator
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+
+from quantfin.vol.caplet3m_vol_calibrator import Caplet3MVolCalibrator
+
 
 class Caplet3MVolSurface:
     """Represents a volatility surface for 3m caplets: vol = f(strike, expiry)"""

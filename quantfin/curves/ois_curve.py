@@ -1,8 +1,10 @@
 import math
+
 import matplotlib.pyplot as plt
 import numpy as np
 
 from quantfin.bootstrap.interpolation import LogLinearInterpolator
+
 
 class OISCurve:
     def __init__(self):

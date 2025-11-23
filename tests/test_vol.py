@@ -1,6 +1,7 @@
 import pytest
+
 from quantfin.vol.vol_surface import VolSurface
-from quantfin.vol.vol_calibrator import VolCalibrator
+
 
 def test_vol_surface_add_get():
     surface = VolSurface()

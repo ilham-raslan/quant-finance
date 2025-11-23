@@ -1,5 +1,7 @@
 import math
+
 from scipy.stats import norm
+
 
 class Caplet3M:
     def __init__(self, expiry, strike, notional=1, market_vol=None):

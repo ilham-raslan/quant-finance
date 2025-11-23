@@ -1,6 +1,8 @@
+import numpy as np
+
 from quantfin.curves.ibor_curve import IBORCurve3M
 from quantfin.curves.ois_curve import OISCurve
-import numpy as np
+
 
 class MultiCurveBootstrapper:
     def __init__(self, ois_swaps, swaps3m):

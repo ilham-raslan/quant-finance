@@ -1,7 +1,9 @@
+import pytest
+
 from quantfin.bootstrap.bootstrapper import MultiCurveBootstrapper
 from quantfin.instruments.ois_swap import OISSwap
 from quantfin.instruments.swap_3m import Swap3M
-import pytest
+
 
 def test_bootstrapper():
     ois_swaps = [

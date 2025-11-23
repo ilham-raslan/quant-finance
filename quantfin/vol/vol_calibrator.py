@@ -39,9 +39,21 @@ class VolCalibrator:
             x0=x0,
             bounds=(lower, upper),
             args=(expiries, strikes, forwards, market_vols),
-            method='trf',
-            verbose=2
+            method='trf'
         )
 
+        residuals = result.fun
+
+        # RMS error
+        rms_error = np.sqrt(np.mean(residuals ** 2))
+        print("RMS error:", rms_error)
+
+        # Maximum absolute residual
+        max_error = np.max(np.abs(residuals))
+        print("Max absolute residual:", max_error)
+
+        # Fitted parameters
         alpha_fit, rho_fit, nu_fit = result.x
+        print("Fitted params:", alpha_fit, rho_fit, nu_fit)
+
         return VolModel(alpha_fit, rho_fit, nu_fit)

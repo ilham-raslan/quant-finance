@@ -177,14 +177,8 @@ print("Caplet price:", price)
 - Implement extrapolation logic for strikes/expiries beyond market data
 
 ### 3. Accuracy Metrics
-- Curve Fitting
-  - Error metrics including RMSE between market swap rates and model-implied swap rates
-  - Maximum absolute error
-- Volatility Calibration
-  - RMSE of vol differences
-  - Maximum absolute vol deviation
-- End-to-end pricing and price deviations
-- Unit/regression tests
+- Tests for interpolated values, not just at knots
+- Regression tests
 
 ### 4. Risk Greeks
 - Develop library for calculating delta, gamma, vega, and other risk measures

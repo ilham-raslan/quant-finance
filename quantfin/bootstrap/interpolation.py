@@ -5,10 +5,6 @@ class Interpolator:
 
 class LogLinearInterpolator(Interpolator):
     def __call__(self, x):
-        # error out for now if we interpolate a date past the last knot
-        if x > self.xs[-1]:
-            raise Exception("Interpolation date is past final knot, this is not yet supported")
-
         i, point = 0, 0
         for i, point in enumerate(self.xs):
             if x == point:

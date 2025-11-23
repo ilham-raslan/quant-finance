@@ -20,6 +20,6 @@ caplet3m_vol_surface =  Caplet3MVolSurface(caplets_3m, ibor3m_curve)
 caplet3m_vol_surface.calibrate()
 
 # price an example caplet
-caplet3m = Caplet3M(1, 0.04, 100)
+caplet3m = Caplet3M(1, 0.008, 100)
 caplet3m_price = caplet3m.price(ois_curve, ibor3m_curve, caplet3m_vol_surface)
-print("1y caplet with strike 0.042 and notional 100 cost " + str(caplet3m_price))
+print("1y caplet with strike 0.008 and notional 100 cost " + str(caplet3m_price))

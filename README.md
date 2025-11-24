@@ -20,7 +20,7 @@ The library is designed to be **educational, modular, and extensible**, making i
 ### Volatility & Calibration
 - Generic volatility surface and calibrator
 - SABR-style parameter fitting to market volatilities
-- Product-specific calibration (caplets, swaptions) planned for future releases
+- Caplet-specific calibration
 
 ---
 

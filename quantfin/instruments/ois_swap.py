@@ -5,7 +5,7 @@ class OISSwap:
         self.maturity = maturity
         self.fixed_rate = fixed_rate
         self.notional = notional
-        self.freq = 0.25
+        self.freq = 0.5
 
     def price(self, ois_curve):
         schedule = np.arange(self.freq, self.maturity + 1e-12, self.freq)
